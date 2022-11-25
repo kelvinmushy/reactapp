@@ -5,7 +5,9 @@ import React from "react";
 function Head(){
 
      return(
-        <div> </div>
+        <div>
+         
+          </div>
      )
 }
 

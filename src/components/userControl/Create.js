@@ -1,6 +1,5 @@
 import { useState}  from "react";
 import http from "../../http";
-import Home from "../Home";
 function Create(){
 const [inputs,setInputs]=useState({});
 const handleChange=(event)=>{
@@ -10,12 +9,14 @@ const handleChange=(event)=>{
 }
 
  const submitForm=()=>{
+  
  http.post('/users',inputs).then((res)=>{
   
    })
  }
     return (
         <div>
+          
                  <form  enctype="multipart/form-date">
                 
                     <input type="text" name="fname" 

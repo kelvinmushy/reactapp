@@ -9,12 +9,16 @@ import {
   Routes,
   Link
 } from "react-router-dom";
+
+
+
 import Create from './components/userControl/Create.js';
 function App() {
   return (
     <div className="App">
         <Router>
       <div>
+      <meta name="csrf-token" content="{{ csrf_token() }}" />
         <ul>
           <li>
             <Link to="/">Home</Link>
