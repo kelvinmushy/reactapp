@@ -1,5 +1,12 @@
 import { useState,useEffect }  from "react";
-import http  from "../http"
+import http  from "../http";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link
+} from "react-router-dom";
+
 
 
 function Home(){
@@ -30,6 +37,9 @@ function Home(){
         <tr key={user.id}>
             <td>{user.fname}</td>
             <td>{user.lname}</td>
+            <td>
+              <Link to={{pathname:"/edit/"+user.id}}>Edit</Link>
+            </td>
         </tr>
         
         )}

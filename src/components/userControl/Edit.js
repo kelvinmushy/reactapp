@@ -1,20 +1,41 @@
-import { useState}  from "react";
+import { useEffect, useState}  from "react";
 import http from "../../http";
-import { useNavigate} from "react-router-dom";
-function Create(){
-const [inputs,setInputs]=useState({});
-const vavigate=useNavigate();
-const handleChange=(event)=>{
+import { useNavigate,useParams } from "react-router-dom";
 
+
+
+
+function Edit(props){
+const vavigate=useNavigate();
+const [inputs,setInputs]=useState({});
+const {id}=useParams();
+
+
+useEffect(()=>{
+  fetchUser();
+},[]);
+
+const fetchUser=()=>{
+  http.get('/users/'+id+'/edit').then((res)=>{
+    setInputs({
+      fname:res.data.fname,
+      lname:res.data.lname,
+    });
+  });
+}
+
+const handleChange=(event)=>{
     const name=event.target.name;
     const  value=event.target.value;
+   
     setInputs(values=>({...values,[name]:value}))
 }
 
  const submitForm=()=>{
   
- http.post('/users',inputs).then((res)=>{
+ http.put('/users/'+id,inputs).then((res)=>{
   vavigate('/');
+  
    })
  }
     return (
@@ -30,10 +51,10 @@ const handleChange=(event)=>{
                        value={inputs.lname || ''  }
                        onChange={handleChange}
                     />
-                    <button type="button" onClick={submitForm}>Save</button>
+                    <button type="button" onClick={submitForm}>Update</button>
                   </form>
         </div>
     );
 }
 
-export default Create;
+export default Edit;
